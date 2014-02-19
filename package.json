@@ -1,5 +1,5 @@
 {
-  "name": "coffeescript-passport-boilerplate",
+  "name": "cmbase-user-system",
   "description": "A demo app written in coffeescript, run on nodejs illustrating the use of passport in express, jade and mongoose environment",
   "version": "0.1.0",
   "private": false,
@@ -14,7 +14,7 @@
     }
   ],
   "engines": {
-    "node": "0.8.x",
+    "node": ">=0.8",
     "npm": "1.2.x"
   },
   "scripts": {
@@ -30,10 +30,6 @@
     "connect-flash": "latest",
     "passport": ">=0.1.17",
     "passport-local": "latest",
-    "passport-facebook": "latest",
-    "passport-twitter": ">=1.0.2",
-    "passport-github": "latest",
-    "passport-google-oauth": "latest",
     "underscore": "latest",
     "gzippo": "latest",
     "async": "latest",

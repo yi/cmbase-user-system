@@ -1,21 +1,13 @@
 extends auth
 
 block auth
+  h1 注册账号！
   form.signup.form-horizontal(action="/users", method="post")
-    .form-group
-      label.control-label(for='name') Full name
-      .controls
-        input.form-control#name(type='text', name="name", placeholder='Full name', value=user.name)
 
     .form-group
       label.control-label(for='email') Email
       .controls
         input.form-control#email(type='text', name="email", placeholder='Email', value=user.email)
-
-    .form-group
-      label.control-label(for='username') Username
-      .controls
-        input.form-control#username(type='text', name="username", placeholder='Username', value=user.username)
 
     .form-group
       label.control-label(for='password') Password

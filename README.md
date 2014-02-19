@@ -1,5 +1,4 @@
-及其简单的用户系统
-
+# 最基本的用户系统
 ============
 
 ##[Demo](http://passport.diki.io)
@@ -19,11 +18,18 @@ Technology
 | Passport      | jQuery         |
 | Mongoose      | Underscore.js  |
 
+## 操作命令
 
-Start CoffeeScript Compiling
+### 启动 coffee watch 进行编译
 -------------
 ```bash
 npm run-script watch
+```
+
+### 启动开发服务器
+-------------
+```bash
+npm run-script start
 ```
 
 License

@@ -1,6 +1,7 @@
 
 path = require('path')
-rootPath = path.normalize(__dirname + '/../..')
+#rootPath = path.normalize(__dirname + '/../..')
+rootPath = process.cwd()
 console.log "[config::rootPath] #{rootPath}"
 
 
@@ -14,62 +15,26 @@ notifier =
   parseAppId: 'PARSE_APP_ID',
   parseApiKey: 'PARSE_MASTER_KEY'
 
-module.exports = {
-  development: {
-    db: 'mongodb://localhost/noobjs_dev',
+module.exports =
+  development:
+    db: 'mongodb://localhost/cmbase_dev',
     root: rootPath,
     notifier: notifier,
-    app: {
-      name: 'Nodejs Passport Boilerplate Demo'
-    },
-    facebook: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/facebook/callback"
-    },
-    twitter: {
-      clientID: "CONSUMER_KEY",
-      clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/twitter/callback"
-    },
-    github: {
-      clientID: 'APP_ID',
-      clientSecret: 'APP_SECRET',
-      callbackURL: 'http://localhost:3000/auth/github/callback'
-    },
-    google: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/google/callback"
-    },
-  },
-  test: {
-    db: 'mongodb://localhost/noobjs_test',
+    app:
+      name: 'CMBase user system'
+  test:
+    db: 'mongodb://localhost/cmbase_test',
     root: rootPath,
     notifier: notifier,
-    app: {
-      name: 'Nodejs Express Mongoose Demo'
-    },
-    facebook: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/facebook/callback"
-    },
-    twitter: {
-      clientID: "CONSUMER_KEY",
-      clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/twitter/callback"
-    },
-    github: {
-      clientID: 'APP_ID',
-      clientSecret: 'APP_SECRET',
-      callbackURL: 'http://localhost:3000/auth/github/callback'
-    },
-    google: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/google/callback"
-    }
-  },
-  production: {}
-}
+    app:
+      name: 'CMBase user system'
+  production:
+    db: 'mongodb://localhost/cmbase_prod',
+    root: rootPath,
+    notifier: notifier,
+    app:
+      name: 'CMBase user system'
+
+
+
+

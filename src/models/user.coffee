@@ -10,16 +10,11 @@ authTypes = ['github', 'twitter', 'facebook', 'google']
 # User Schema
 
 UserSchema = new Schema({
-  name: String,
-  email: String,
   username: String,
+  email: String,
   provider: String,
   hashed_password: String,
   salt: String,
-  facebook: {},
-  twitter: {},
-  github: {},
-  google: {}
 })
 
 # Virtuals
@@ -40,11 +35,11 @@ validatePresenceOf = (value)->
 
 # the below 4 validations only apply if you are signing up traditionally
 
-UserSchema.path('name').validate (name)->
-  # if you are authenticating by any of the oauth strategies, don't validate
-  return true if authTypes.indexOf(this.provider) isnt -1
-  return name.length
-, 'Name cannot be blank'
+#UserSchema.path('name').validate (name)->
+  ## if you are authenticating by any of the oauth strategies, don't validate
+  #return true if authTypes.indexOf(this.provider) isnt -1
+  #return name.length
+#, 'Name cannot be blank'
 
 UserSchema.path('email').validate (email)->
   # if you are authenticating by any of the oauth strategies, don't validate
@@ -52,11 +47,11 @@ UserSchema.path('email').validate (email)->
   return email.length
 , 'Email cannot be blank'
 
-UserSchema.path('username').validate (username)->
-  # if you are authenticating by any of the oauth strategies, don't validate
-  return true if authTypes.indexOf(this.provider) isnt -1
-  return username.length
-, 'Username cannot be blank'
+#UserSchema.path('username').validate (username)->
+  ## if you are authenticating by any of the oauth strategies, don't validate
+  #return true if authTypes.indexOf(this.provider) isnt -1
+  #return username.length
+#, 'Username cannot be blank'
 
 UserSchema.path('hashed_password').validate (hashed_password)->
   # if you are authenticating by any of the oauth strategies, don't validate
