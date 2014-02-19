@@ -1,0 +1,17 @@
+
+header#header
+  .navbar.navbar-inverse.navbar-fixed-top
+    .navbar-inner
+      .container
+        a.navbar-brand(href="/") Node.js Passport Boilerplate
+        .collapse.navbar-collapse.navbar-ex1-collapse
+          ul.nav.navbar-nav.nav-pills.pull-right
+            li
+            if (req.isAuthenticated())
+              li
+                a(href="/users/"+req.user.id, title="Profile") Profile
+              li
+                a(href="/logout", title="logout") Logout
+            else
+              li
+                a(href="/login", title="Login") Login
