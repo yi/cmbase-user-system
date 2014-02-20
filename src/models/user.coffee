@@ -22,6 +22,8 @@ UserSchema = new Schema({
 UserSchema
   .virtual('password')
   .set( (password)->
+    console.log "[user::set password] password:#{password}"
+
     @_password = password
     @salt = @makeSalt()
     @hashed_password = @encryptPassword(password)
@@ -98,3 +100,6 @@ UserSchema.methods =
     return crypto.createHmac('sha1', @salt).update(password).digest('hex')
 
 mongoose.model('User', UserSchema)
+
+
+

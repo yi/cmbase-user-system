@@ -94,8 +94,8 @@ exports.changePassword = (req, res, next)->
   unless newPassword
     return next(new EvalError("无效的新密码，请重新选择密码"))
 
-  req.user.passport = newPassword
-  req.user.isNew = true
+  req.user.set('password', newPassword)
+  #req.user.isNew = true
 
   req.user.save (err)->
     return next(err) if err?
