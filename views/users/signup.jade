@@ -5,9 +5,9 @@ block auth
   form.signup.form-horizontal(action="/users", method="post")
 
     .form-group
-      label.control-label(for='email') Email
+      label.control-label(for='username') Username
       .controls
-        input.form-control#email(type='text', name="email", placeholder='Email', value=user.email)
+        input.form-control#username(type='text', name="username", placeholder='Username', value=user.username)
 
     .form-group
       label.control-label(for='password') Password

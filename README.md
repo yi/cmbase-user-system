@@ -11,7 +11,7 @@ path: `/api/login`
 method: `POST`
 
 request 参数:
- * email
+ * username
  * password
 
 response 结果
@@ -20,7 +20,7 @@ response 结果
 
 示例：
 ```
- curl -X POST -d "email=test1@gmail.com&password=112233" http://localhost:3000/api/login -v
+ curl -X POST -d "username=test1&password=112233" http://localhost:3000/api/login -v
 ```
 
 ### 用户注册
@@ -30,7 +30,7 @@ path: `/api/signup`
 method: `POST`
 
 request 参数:
- * email
+ * username
  * password
 
 response 结果
@@ -39,7 +39,7 @@ response 结果
 
 示例：
 ```
- curl -X POST -d "email=test1@gmail.com&password=112233" http://localhost:3000/api/signup -v
+ curl -X POST -d "username=test1&password=112233" http://localhost:3000/api/signup -v
 ```
 
 ### 用户修改密码
@@ -49,7 +49,7 @@ path: `/api/change_password`
 method: `POST`
 
 request 参数:
- * email
+ * username
  * password
  * new_password
 
@@ -59,7 +59,7 @@ response 结果
 
 示例：
 ```
- curl -X POST -d "email=test1@gmail.com&password=112233&new_password=556677" http://localhost:3000/api/change_password -v
+ curl -X POST -d "username=test1&password=112233&new_password=556677" http://localhost:3000/api/change_password -v
 ```
 
 ============

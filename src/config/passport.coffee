@@ -15,11 +15,11 @@ module.exports = (passport, config)->
 
   # use local strategy
   localStrategyConfig =
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password'
 
-  localStrategyCallback = (email, password, done)->
-    User.findOne { email: email }, (err, user)->
+  localStrategyCallback = (username, password, done)->
+    User.findOne { username: username}, (err, user)->
       return done(err) if (err)
       return done(null, false, { message: 'Unknown user' }) unless user
       return done(null, false, { message: 'Invalid password' }) unless user.authenticate(password)

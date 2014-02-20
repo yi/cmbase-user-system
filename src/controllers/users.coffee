@@ -44,7 +44,7 @@ exports.create = (req, res, next)->
   newUser = new User(req.body)
   newUser.provider = 'local'
 
-  User.findOne({ email: newUser.email }).exec (err, user)->
+  User.findOne({ username: newUser.username}).exec (err, user)->
     return next(err) if err?
     unless user?
       newUser.save (err)->
@@ -79,7 +79,7 @@ exports.create = (req, res, next)->
           #success: false
       else
         res.render 'users/signup',
-          errors: [{"type":"email already registered"}]
+          errors: [{"type":"username already registered"}]
           user:newUser
       return
     return

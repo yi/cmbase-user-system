@@ -11,7 +11,6 @@ authTypes = ['github', 'twitter', 'facebook', 'google']
 
 UserSchema = new Schema({
   username: String,
-  email: String,
   provider: String,
   hashed_password: String,
   salt: String,
@@ -43,17 +42,17 @@ validatePresenceOf = (value)->
   #return name.length
 #, 'Name cannot be blank'
 
-UserSchema.path('email').validate (email)->
-  # if you are authenticating by any of the oauth strategies, don't validate
-  return true if authTypes.indexOf(this.provider) isnt -1
-  return email.length
-, 'Email cannot be blank'
-
-#UserSchema.path('username').validate (username)->
+#UserSchema.path('email').validate (email)->
   ## if you are authenticating by any of the oauth strategies, don't validate
   #return true if authTypes.indexOf(this.provider) isnt -1
-  #return username.length
-#, 'Username cannot be blank'
+  #return email.length
+#, 'Email cannot be blank'
+
+UserSchema.path('username').validate (username)->
+  # if you are authenticating by any of the oauth strategies, don't validate
+  return true if authTypes.indexOf(this.provider) isnt -1
+  return username.length
+, 'Username cannot be blank'
 
 UserSchema.path('hashed_password').validate (hashed_password)->
   # if you are authenticating by any of the oauth strategies, don't validate
