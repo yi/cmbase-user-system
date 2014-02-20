@@ -38,6 +38,9 @@ exports.session = (req, res)->
 
 # Create user
 exports.create = (req, res)->
+
+  console.log "[users::create] req.speak_as:#{req.speak_as}"
+
   newUser = new User(req.body)
   newUser.provider = 'local'
 
@@ -46,19 +49,36 @@ exports.create = (req, res)->
     unless user?
       newUser.save (err)->
         if err?
-          res.render 'users/signup',
-            errors: err.errors
-            user:newUser
+          if req.speak_as is "json"
+            res.json
+              error: String(err)
+              success: false
+          else
+            res.render 'users/signup',
+              errors: err.errors
+              user:newUser
           return
 
         req.logIn newUser, (err)->
           return next err if err?
-          return res.redirect('/')
+
+          if req.speak_as is "json"
+            res.json
+              id : newUser.id
+              success: true
+          else
+            return res.redirect('/')
+
         return
     else
-      res.render 'users/signup',
-        errors: [{"type":"email already registered"}]
-        user:newUser
+      if req.speak_as is "json"
+        res.json
+          error: "邮件地址已存在"
+          success: false
+      else
+        res.render 'users/signup',
+          errors: [{"type":"email already registered"}]
+          user:newUser
       return
     return
   return
