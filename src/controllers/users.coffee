@@ -37,7 +37,7 @@ exports.session = (req, res)->
   return
 
 # Create user
-exports.create = (req, res)->
+exports.create = (req, res, next)->
 
   console.log "[users::create] req.speak_as:#{req.speak_as}"
 
@@ -50,9 +50,10 @@ exports.create = (req, res)->
       newUser.save (err)->
         if err?
           if req.speak_as is "json"
-            res.json
-              error: String(err)
-              success: false
+            next(new EvalError(String(err)))
+            #res.json
+              #error: String(err)
+              #success: false
           else
             res.render 'users/signup',
               errors: err.errors
@@ -72,9 +73,10 @@ exports.create = (req, res)->
         return
     else
       if req.speak_as is "json"
-        res.json
-          error: "邮件地址已存在"
-          success: false
+        next(new EvalError("用户名已存在"))
+        #res.json
+          #error: "用户名已存在"
+          #success: false
       else
         res.render 'users/signup',
           errors: [{"type":"email already registered"}]
@@ -82,6 +84,28 @@ exports.create = (req, res)->
       return
     return
   return
+
+exports.changePassword = (req, res, next)->
+
+  return next(new EvalError("missing user")) unless req.user?
+
+  newPassword = String(req.body.new_password || "").trim()
+
+  unless newPassword
+    return next(new EvalError("无效的新密码，请重新选择密码"))
+
+  req.user.passport = newPassword
+  req.user.isNew = true
+
+  req.user.save (err)->
+    return next(err) if err?
+    res.json
+      id : req.user.id
+      success: true
+    return
+
+  return
+
 
 #  Show profile
 exports.show = (req, res)->

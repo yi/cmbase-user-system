@@ -42,6 +42,26 @@ response 结果
  curl -X POST -d "email=test1@gmail.com&password=112233" http://localhost:3000/api/signup -v
 ```
 
+### 用户修改密码
+
+path: `/api/change_password`
+
+method: `POST`
+
+request 参数:
+ * email
+ * password
+ * new_password
+
+response 结果
+ * 修改密码成功的话： 返回http状态200， body是json数据格式：`{ "id": "5305a56964626a8b061de161", "success": true }`
+ * 修改密码失败的话： 返回http状态200， body是json数据格式：`{ "error": "注册失败的原因", "success": false }`
+
+示例：
+```
+ curl -X POST -d "email=test1@gmail.com&password=112233&new_password=556677" http://localhost:3000/api/change_password -v
+```
+
 ============
 
 ##[Demo](http://passport.diki.io)

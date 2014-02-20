@@ -13,6 +13,9 @@ module.exports = (app, passport, auth)->
 
   app.post '/users/session', passport.authenticate('local', {failureRedirect: '/login', failureFlash: 'Invalid email or password.'}), users.session
   app.post '/api/login', passport.authenticate('local', { session: false }), (req, res)-> res.json({id:req.user.id, success:true})
+
+  app.post '/api/change_password', passport.authenticate('local', { session: false }), ((req, res, next)-> (req.speak_as = "json") && next()), users.changePassword
+
   app.get '/users/:userId', users.show
 
   # this is home page

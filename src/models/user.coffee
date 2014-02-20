@@ -62,6 +62,8 @@ UserSchema.path('hashed_password').validate (hashed_password)->
 
 # Pre-save hook
 UserSchema.pre 'save', (next)->
+  console.log "[user::pre save] @isNew:#{@isNew}"
+
   return next() if (!@isNew)
 
   if not validatePresenceOf(@password) and authTypes.indexOf(this.provider) is -1

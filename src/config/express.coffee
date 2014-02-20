@@ -69,6 +69,12 @@ module.exports = (app, config, passport)->
       # log it
       console.error(err.stack)
 
+      # treat eval error as a json format error output
+      if err.name is 'EvalError'
+        return res.json
+          error : err.toString()
+          success : false
+
       # error page
       res.status(500).render('500', { error: err.stack })
 
